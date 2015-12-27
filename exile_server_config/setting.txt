@@ -1,0 +1,7 @@
+class CfgSettings
+{
+	class ServerSettings
+	{
+		serverFSM = "fsm\server_main.fsm";
+	}
+}
