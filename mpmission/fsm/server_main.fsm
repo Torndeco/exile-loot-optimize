@@ -123,21 +123,20 @@ class FSM
                                          "_index = - 1;" \n
                                          "{" \n
                                          "	_building = _x;" \n
-                                         "	if ((time - (_building getVariable [""ExileLootSpawnedAt"", 0])) < _lootLifeTime) exitWith" \n
+                                         "	if ((time - (_building getVariable [""ExileLootSpawnedAt"", 0])) < _lootLifeTime) exitWith {}" \n
+                                         "" \n
+                                         "	_lootWeaponHolders = _building getVariable [""ExileLootWeaponHolders"", []];" \n
                                          "	{" \n
-                                         "		_lootWeaponHolders = _building getVariable [""ExileLootWeaponHolders"", []];" \n
+                                         "		if !(isNull _x) then" \n
                                          "		{" \n
-                                         "			if !(isNull _x) then" \n
-                                         "			{" \n
-                                         "				deleteVehicle _x;" \n
-                                         "			};" \n
-                                         "		}" \n
-                                         "		forEach _lootWeaponHolders;" \n
-                                         "		_building setVariable [""ExileLootSpawnedAt"", nil];" \n
-                                         "		_building setVariable [""ExileHasLoot"", false];" \n
-                                         "		_building setVariable [""ExileLootWeaponHolders"", []];" \n
-                                         "		_index = _forEachIndex;" \n
-                                         "	};" \n
+                                         "			deleteVehicle _x;" \n
+                                         "		};" \n
+                                         "	}" \n
+                                         "	forEach _lootWeaponHolders;" \n
+                                         "	_building setVariable [""ExileLootSpawnedAt"", nil];" \n
+                                         "	_building setVariable [""ExileHasLoot"", false];" \n
+                                         "	_building setVariable [""ExileLootWeaponHolders"", []];" \n
+                                         "	_index = _forEachIndex;" \n
                                          "}" \n
                                          "forEach ExileServerBuildingsWithLoot;" \n
                                          "" \n
