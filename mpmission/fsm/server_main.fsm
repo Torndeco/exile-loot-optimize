@@ -6,9 +6,9 @@ item1[] = {"Continue",8,218,775.000000,25.000000,875.000000,75.000000,0.000000,"
 item2[] = {"Wait",2,250,775.000000,100.000000,875.000000,150.000000,0.000000,"Wait"};
 item3[] = {"Ground_Weapon_Ho",4,218,650.000000,100.000000,750.000000,150.000000,0.000000,"Ground" \n "Weapon" \n "Holder"};
 item4[] = {"Weapon_Holder_Si",4,218,650.000000,175.000000,750.000000,225.000000,0.000000,"Weapon" \n "Holder" \n "Simulated"};
-item5[] = {"Loot",4,218,775.000000,175.000000,875.000000,225.000000,0.000000,"Loot"};
+item5[] = {"Loot",4,4314,775.000000,175.000000,875.000000,225.000000,0.000000,"Loot"};
 item6[] = {"Groups",4,218,900.000000,175.000000,1000.000000,225.000000,0.000000,"Groups"};
-item7[] = {"All_Dead",4,4314,900.000000,100.000000,1000.000000,150.000000,0.000000,"All" \n "Dead"};
+item7[] = {"All_Dead",4,218,900.000000,100.000000,1000.000000,150.000000,0.000000,"All" \n "Dead"};
 link0[] = {0,1};
 link1[] = {1,2};
 link2[] = {2,3};
@@ -21,8 +21,8 @@ link8[] = {4,2};
 link9[] = {5,2};
 link10[] = {6,2};
 link11[] = {7,2};
-globals[] = {0.000000,0,0,0,0,640,480,1,455,6316128,1,507.138519,1104.597778,441.719635,-113.631027,979,1004,1};
-window[] = {2,-1,-1,-1,-1,796,-1738,-444,62,3,997};
+globals[] = {0.000000,0,0,0,0,640,480,1,455,6316128,1,507.138519,1104.597778,441.719635,-113.631027,979,884,1};
+window[] = {2,-1,-1,-1,-1,864,130,1424,130,3,997};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -120,10 +120,10 @@ class FSM
                                          "" \n
                                          "//call ExileServer_system_garbageCollector_unscheduled_deleteLoot;" \n
                                          "" \n
-                                         "" \n
+                                         "_index = - 1;" \n
                                          "{" \n
                                          "	_building = _x;" \n
-                                         "	if ((time - (_building getVariable [""ExileLootSpawnedAt"", 0])) > _lootLifeTime) then" \n
+                                         "	if ((time - (_building getVariable [""ExileLootSpawnedAt"", 0])) < _lootLifeTime) exitWith" \n
                                          "	{" \n
                                          "		_lootWeaponHolders = _building getVariable [""ExileLootWeaponHolders"", []];" \n
                                          "		{" \n
@@ -136,10 +136,13 @@ class FSM
                                          "		_building setVariable [""ExileLootSpawnedAt"", nil];" \n
                                          "		_building setVariable [""ExileHasLoot"", false];" \n
                                          "		_building setVariable [""ExileLootWeaponHolders"", []];" \n
-                                         "		ExileServerBuildingsWithLoot deleteAt _forEachIndex;" \n
+                                         "		_index = _forEachIndex;" \n
                                          "	};" \n
                                          "}" \n
-                                         "forEach ExileServerBuildingsWithLoot;"/*%FSM</ACTION""">*/;
+                                         "forEach ExileServerBuildingsWithLoot;" \n
+                                         "" \n
+                                         "" \n
+                                         "ExileServerBuildingsWithLoot deleteRange [0,(_index + 1)];"/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
                                 /*%FSM<LINK "Groups">*/
