@@ -22,7 +22,7 @@ link9[] = {5,2};
 link10[] = {6,2};
 link11[] = {7,2};
 globals[] = {0.000000,0,0,0,0,640,480,1,455,6316128,1,507.138519,1104.597778,441.719635,-113.631027,979,884,1};
-window[] = {2,-1,-1,-1,-1,864,130,1424,130,3,997};
+window[] = {2,-1,-1,-1,-1,916,182,1476,182,3,997};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -123,7 +123,7 @@ class FSM
                                          "_index = - 1;" \n
                                          "{" \n
                                          "	_building = _x;" \n
-                                         "	if ((time - (_building getVariable [""ExileLootSpawnedAt"", 0])) < _lootLifeTime) exitWith {}" \n
+                                         "	if ((time - (_building getVariable [""ExileLootSpawnedAt"", 0])) < _lootLifeTime) exitWith {};" \n
                                          "" \n
                                          "	_lootWeaponHolders = _building getVariable [""ExileLootWeaponHolders"", []];" \n
                                          "	{" \n
